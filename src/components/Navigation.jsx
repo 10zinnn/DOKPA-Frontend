@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-const Navigation = () => {
-  const [scrolled, setScrolled] = React.useState(false);
+const Navigation = ({ theme, toggleTheme }) => {
+  const [scrolled, setScrolled] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -22,15 +22,28 @@ const Navigation = () => {
     <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
         <div className="nav-logo">
-          <img src="/logo.png" alt="Dokpa Expeditions" className="logo-image" />
+          <img
+            src={theme === 'dark' ? "/logo-white.png" : "/logo.png"}
+            alt="Dokpa Expeditions"
+            className="logo-image"
+          />
         </div>
-        <ul className="nav-links">
-          <li><a onClick={() => scrollToSection('home')}>Home</a></li>
-          <li><a onClick={() => scrollToSection('about')}>About</a></li>
-          <li><a onClick={() => scrollToSection('services')}>Services</a></li>
-          <li><a onClick={() => scrollToSection('testimonials')}>Testimonials</a></li>
-          <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
-        </ul>
+        <div className="nav-right">
+          <ul className="nav-links">
+            <li><a onClick={() => scrollToSection('home')}>Home</a></li>
+            <li><a onClick={() => scrollToSection('about')}>About</a></li>
+            <li><a onClick={() => scrollToSection('services')}>Services</a></li>
+            <li><a onClick={() => scrollToSection('testimonials')}>Testimonials</a></li>
+            <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
+          </ul>
+          <button
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+        </div>
       </div>
       <style jsx>{`
         .nav {
@@ -41,12 +54,11 @@ const Navigation = () => {
           z-index: 1000;
           padding: var(--space-4) 0;
           transition: all var(--transition-base);
-          background: rgba(245, 239, 231, 0.95);
+          background: var(--nav-bg);
           backdrop-filter: blur(10px);
         }
 
         .nav.scrolled {
-          background: rgba(245, 239, 231, 0.98);
           box-shadow: var(--shadow-lg);
         }
 
@@ -64,6 +76,13 @@ const Navigation = () => {
         .logo-image {
           height: 50px;
           width: auto;
+          transition: transform var(--transition-base);
+        }
+
+        .nav-right {
+          display: flex;
+          align-items: center;
+          gap: var(--space-8);
         }
 
         .nav-links {
@@ -73,7 +92,7 @@ const Navigation = () => {
         }
 
         .nav-links a {
-          color: var(--color-summit-charcoal);
+          color: var(--text-primary);
           text-decoration: none;
           font-weight: 500;
           font-size: var(--text-base);
@@ -99,6 +118,26 @@ const Navigation = () => {
 
         .nav-links a:hover::after {
           width: 100%;
+        }
+
+        .theme-toggle {
+          background: var(--bg-secondary);
+          border: 1px solid var(--glass-border);
+          padding: var(--space-2);
+          border-radius: 50%;
+          cursor: pointer;
+          font-size: var(--text-lg);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all var(--transition-base);
+          width: 40px;
+          height: 40px;
+        }
+
+        .theme-toggle:hover {
+          transform: scale(1.1);
+          background: var(--color-sage-green);
         }
 
         @media (max-width: 768px) {
