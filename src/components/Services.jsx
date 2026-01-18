@@ -5,25 +5,25 @@ const Services = () => {
     {
       title: 'Peak Climbing',
       description: 'Conquer majestic Himalayan summits with our expert climbing teams and comprehensive support.',
-      image: '/service-peak.jpg',
+      image: '/peak-climbing.jpg',
       highlights: ['Technical peaks', 'Full logistics', 'Expert guides']
     },
     {
       title: 'Treks',
       description: 'Explore hidden valleys and high passes on curated trekking routes across the Ladakhi landscape.',
-      image: '/service-treks.jpg',
+      image: '/trekking.jpg',
       highlights: ['Remote trails', 'Local culture', 'Sustainable travel']
     },
     {
       title: 'Ice & Rock Climbing',
       description: 'Challenge yourself on world-class rock faces and frozen waterfalls with professional guidance.',
-      image: '/service-climbing.jpg',
+      image: '/ice-climbing.jpg',
       highlights: ['Skills training', 'Top gear', 'Safety focused']
     },
     {
       title: 'Cultural Tours',
       description: 'Immerse yourself in the rich traditions, monasteries, and hospitality of the High Himalayas.',
-      image: '/service-culture.jpg',
+      image: '/cultural-tours.jpg',
       highlights: ['Authentic Gompas', 'Local homestays', 'Expert narration']
     }
   ];
