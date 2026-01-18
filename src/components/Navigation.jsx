@@ -32,6 +32,7 @@ const Navigation = ({ theme, toggleTheme }) => {
           <ul className="nav-links">
             <li><a onClick={() => scrollToSection('home')}>Home</a></li>
             <li><a onClick={() => scrollToSection('about')}>About</a></li>
+            <li><a onClick={() => scrollToSection('destinations')}>Destinations</a></li>
             <li><a onClick={() => scrollToSection('services')}>Services</a></li>
             <li><a onClick={() => scrollToSection('testimonials')}>Testimonials</a></li>
             <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>

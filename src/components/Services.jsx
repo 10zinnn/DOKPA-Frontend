@@ -101,12 +101,14 @@ const Services = () => {
           flex-direction: column;
           justify-content: flex-end;
           transition: transform var(--transition-base), box-shadow var(--transition-base);
-          border: 1px solid var(--glass-border);
+          box-shadow: 0 0 0 1px var(--glass-border);
+          outline: 1px solid transparent;
+          isolation: isolate;
         }
 
         .service-card:hover {
           transform: translateY(-10px);
-          box-shadow: var(--shadow-xl), var(--shadow-glow);
+          box-shadow: 0 0 0 1px var(--glass-border), var(--shadow-xl), 0 0 15px var(--shadow-glow);
         }
 
         .card-overlay {
