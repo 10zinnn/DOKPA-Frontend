@@ -23,7 +23,7 @@ const Navigation = ({ theme, toggleTheme }) => {
       <div className="container nav-container">
         <div className="nav-logo">
           <img
-            src={theme === 'dark' ? "/logo-white.png" : "/logo.png"}
+            src={theme === 'dark' ? "/logo-white.svg" : "/logo-black.svg"}
             alt="Dokpa Expeditions"
             className="logo-image"
           />

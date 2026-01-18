@@ -3,57 +3,62 @@ import React from 'react'
 const Services = () => {
   const services = [
     {
-      icon: '🥾',
-      title: 'Trek Leadership',
-      description: 'Expert-guided treks through Ladakh\'s most stunning trails, from gentle walks to challenging high-altitude expeditions.',
-      highlights: ['Experienced guides', 'Safety-first approach', 'Local knowledge']
+      title: 'Peak Climbing',
+      description: 'Conquer majestic Himalayan summits with our expert climbing teams and comprehensive support.',
+      image: '/peak-climbing.jpg',
+      highlights: ['Technical peaks', 'Full logistics', 'Expert guides']
     },
     {
-      icon: '⛰️',
-      title: 'Mountaineering Expeditions',
-      description: 'Technical mountaineering adventures for experienced climbers seeking to conquer the majestic peaks of the Himalayas.',
-      highlights: ['Professional equipment', 'Skilled leadership', 'Altitude acclimatization']
+      title: 'Treks',
+      description: 'Explore hidden valleys and high passes on curated trekking routes across the Ladakhi landscape.',
+      image: '/trekking.jpg',
+      highlights: ['Remote trails', 'Local culture', 'Sustainable travel']
     },
     {
-      icon: '🚴',
-      title: 'Cycling Adventures',
-      description: 'Thrilling cycling journeys across high-altitude passes and through picturesque valleys of Ladakh.',
-      highlights: ['Scenic routes', 'Support vehicles', 'Flexible difficulty']
+      title: 'Ice & Rock Climbing',
+      description: 'Challenge yourself on world-class rock faces and frozen waterfalls with professional guidance.',
+      image: '/ice-climbing.jpg',
+      highlights: ['Skills training', 'Top gear', 'Safety focused']
     },
     {
-      icon: '🏛️',
-      title: 'Cultural Journeys',
-      description: 'Immersive experiences connecting you with Ladakhi culture, monasteries, festivals, and local communities.',
-      highlights: ['Authentic interactions', 'Cultural immersion', 'Community visits']
+      title: 'Cultural Tours',
+      description: 'Immerse yourself in the rich traditions, monasteries, and hospitality of the High Himalayas.',
+      image: '/cultural-tours.jpg',
+      highlights: ['Authentic Gompas', 'Local homestays', 'Expert narration']
     }
   ];
 
   return (
     <section id="services" className="section services-section">
       <div className="container">
-        <h2 className="section-title">Our Journeys</h2>
+        <h2 className="section-title">Our Adventure Experiences</h2>
         <p className="section-intro">
-          Specializing in meaningful travel rather than mass tourism, each journey is
-          carefully planned with emphasis on safety, sustainability, and local knowledge.
+          Experience peak climbing, treks, ice and rock climbing and cultural tours in Ladakh with expert guides and adventures.
         </p>
 
         <div className="services-grid">
           {services.map((service, index) => (
-            <div key={index} className="service-card glass-card">
-              <div className="service-icon">{service.icon}</div>
-              <h3>{service.title}</h3>
-              <p className="service-description">{service.description}</p>
-              <ul className="service-highlights">
-                {service.highlights.map((highlight, i) => (
-                  <li key={i}>
-                    <span className="check-icon">✓</span>
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
-              <button className="btn-link">
-                Learn More →
-              </button>
+            <div
+              key={index}
+              className="service-card"
+              style={{ backgroundImage: `url(${service.image})` }}
+            >
+              <div className="card-overlay"></div>
+              <div className="card-content">
+                <h3>{service.title}</h3>
+                <p className="service-description">{service.description}</p>
+                <ul className="service-highlights">
+                  {service.highlights.map((highlight, i) => (
+                    <li key={i}>
+                      <span className="check-icon">✓</span>
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+                <button className="btn-link">
+                  Learn More →
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -66,11 +71,7 @@ const Services = () => {
       </div>
       <style jsx>{`
         .services-section {
-          background: linear-gradient(180deg, 
-            transparent 0%, 
-            rgba(72, 140, 200, 0.03) 50%,
-            transparent 100%
-          );
+          background: var(--bg-primary);
         }
 
         .section-intro {
@@ -78,8 +79,8 @@ const Services = () => {
           max-width: 700px;
           margin: 0 auto var(--space-12);
           font-size: var(--text-lg);
-          color: var(--color-summit-charcoal);
-          opacity: 0.85;
+          color: var(--text-primary);
+          opacity: 0.9;
         }
 
         .services-grid {
@@ -90,27 +91,63 @@ const Services = () => {
         }
 
         .service-card {
-          padding: var(--space-8);
+          height: 450px;
+          position: relative;
+          border-radius: var(--radius-xl);
+          overflow: hidden;
+          background-size: cover;
+          background-position: center;
           display: flex;
           flex-direction: column;
+          justify-content: flex-end;
+          transition: transform var(--transition-base), box-shadow var(--transition-base);
+          border: 1px solid var(--glass-border);
         }
 
-        .service-icon {
-          font-size: 4rem;
-          margin-bottom: var(--space-4);
+        .service-card:hover {
+          transform: translateY(-10px);
+          box-shadow: var(--shadow-xl), var(--shadow-glow);
+        }
+
+        .card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.2) 0%,
+            rgba(0, 0, 0, 0.6) 50%,
+            rgba(0, 0, 0, 0.9) 100%
+          );
+          transition: opacity var(--transition-base);
+        }
+
+        .service-card:hover .card-overlay {
+          background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.1) 0%,
+            rgba(0, 0, 0, 0.5) 40%,
+            rgba(0, 0, 0, 0.95) 100%
+          );
+        }
+
+        .card-content {
+          position: relative;
+          z-index: 2;
+          padding: var(--space-8);
+          color: white;
         }
 
         .service-card h3 {
           font-size: var(--text-2xl);
           margin-bottom: var(--space-3);
-          color: var(--color-sage-green-dark);
+          color: white;
         }
 
         .service-description {
-          color: var(--color-summit-charcoal);
-          flex-grow: 1;
+          color: rgba(255, 255, 255, 0.9);
           margin-bottom: var(--space-4);
-          opacity: 0.9;
+          font-size: var(--text-base);
+          line-height: 1.4;
         }
 
         .service-highlights {
@@ -122,30 +159,30 @@ const Services = () => {
           display: flex;
           align-items: center;
           gap: var(--space-2);
-          margin-bottom: var(--space-2);
-          color: var(--color-summit-charcoal);
+          margin-bottom: var(--space-1);
+          color: rgba(255, 255, 255, 0.85);
           font-size: var(--text-sm);
-          opacity: 0.8;
         }
 
         .check-icon {
-          color: var(--color-sage-green);
+          color: var(--color-sage-green-light);
           font-weight: bold;
         }
 
         .btn-link {
           background: none;
           border: none;
-          color: var(--color-sage-green);
+          color: var(--color-sage-green-light);
           font-weight: 600;
           cursor: pointer;
           font-size: var(--text-base);
           text-align: left;
           transition: all var(--transition-fast);
+          padding: 0;
         }
 
         .btn-link:hover {
-          color: var(--color-sage-green-dark);
+          color: white;
           transform: translateX(5px);
         }
 
@@ -153,23 +190,27 @@ const Services = () => {
           text-align: center;
           padding: var(--space-12) var(--space-8);
           border-radius: var(--radius-2xl);
+          background: var(--bg-secondary);
         }
 
         .cta-box h3 {
           font-size: var(--text-3xl);
           margin-bottom: var(--space-4);
+          color: var(--text-primary);
         }
 
         .cta-box p {
           max-width: 600px;
           margin: 0 auto var(--space-6);
-          color: var(--color-summit-charcoal);
-          opacity: 0.85;
+          color: var(--text-secondary);
         }
 
         @media (max-width: 768px) {
           .services-grid {
             grid-template-columns: 1fr;
+          }
+          .service-card {
+            height: 400px;
           }
         }
       `}</style>
