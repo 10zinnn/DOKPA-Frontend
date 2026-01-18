@@ -1,70 +1,70 @@
 import React from 'react'
 
 const Services = () => {
-    const services = [
-        {
-            icon: '🥾',
-            title: 'Trek Leadership',
-            description: 'Expert-guided treks through Ladakh\'s most stunning trails, from gentle walks to challenging high-altitude expeditions.',
-            highlights: ['Experienced guides', 'Safety-first approach', 'Local knowledge']
-        },
-        {
-            icon: '⛰️',
-            title: 'Mountaineering Expeditions',
-            description: 'Technical mountaineering adventures for experienced climbers seeking to conquer the majestic peaks of the Himalayas.',
-            highlights: ['Professional equipment', 'Skilled leadership', 'Altitude acclimatization']
-        },
-        {
-            icon: '🚴',
-            title: 'Cycling Adventures',
-            description: 'Thrilling cycling journeys across high-altitude passes and through picturesque valleys of Ladakh.',
-            highlights: ['Scenic routes', 'Support vehicles', 'Flexible difficulty']
-        },
-        {
-            icon: '🏛️',
-            title: 'Cultural Journeys',
-            description: 'Immersive experiences connecting you with Ladakhi culture, monasteries, festivals, and local communities.',
-            highlights: ['Authentic interactions', 'Cultural immersion', 'Community visits']
-        }
-    ];
+  const services = [
+    {
+      icon: '🥾',
+      title: 'Trek Leadership',
+      description: 'Expert-guided treks through Ladakh\'s most stunning trails, from gentle walks to challenging high-altitude expeditions.',
+      highlights: ['Experienced guides', 'Safety-first approach', 'Local knowledge']
+    },
+    {
+      icon: '⛰️',
+      title: 'Mountaineering Expeditions',
+      description: 'Technical mountaineering adventures for experienced climbers seeking to conquer the majestic peaks of the Himalayas.',
+      highlights: ['Professional equipment', 'Skilled leadership', 'Altitude acclimatization']
+    },
+    {
+      icon: '🚴',
+      title: 'Cycling Adventures',
+      description: 'Thrilling cycling journeys across high-altitude passes and through picturesque valleys of Ladakh.',
+      highlights: ['Scenic routes', 'Support vehicles', 'Flexible difficulty']
+    },
+    {
+      icon: '🏛️',
+      title: 'Cultural Journeys',
+      description: 'Immersive experiences connecting you with Ladakhi culture, monasteries, festivals, and local communities.',
+      highlights: ['Authentic interactions', 'Cultural immersion', 'Community visits']
+    }
+  ];
 
-    return (
-        <section id="services" className="section services-section">
-            <div className="container">
-                <h2 className="section-title">Our Journeys</h2>
-                <p className="section-intro">
-                    Specializing in meaningful travel rather than mass tourism, each journey is
-                    carefully planned with emphasis on safety, sustainability, and local knowledge.
-                </p>
+  return (
+    <section id="services" className="section services-section">
+      <div className="container">
+        <h2 className="section-title">Our Journeys</h2>
+        <p className="section-intro">
+          Specializing in meaningful travel rather than mass tourism, each journey is
+          carefully planned with emphasis on safety, sustainability, and local knowledge.
+        </p>
 
-                <div className="services-grid">
-                    {services.map((service, index) => (
-                        <div key={index} className="service-card glass-card">
-                            <div className="service-icon">{service.icon}</div>
-                            <h3>{service.title}</h3>
-                            <p className="service-description">{service.description}</p>
-                            <ul className="service-highlights">
-                                {service.highlights.map((highlight, i) => (
-                                    <li key={i}>
-                                        <span className="check-icon">✓</span>
-                                        {highlight}
-                                    </li>
-                                ))}
-                            </ul>
-                            <button className="btn-link">
-                                Learn More →
-                            </button>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="cta-box glass">
-                    <h3>Ready for Your Next Adventure?</h3>
-                    <p>Packages and detailed itineraries will be available soon. Get in touch to discuss custom journeys.</p>
-                    <a href="#contact" className="btn btn-primary">Contact Us</a>
-                </div>
+        <div className="services-grid">
+          {services.map((service, index) => (
+            <div key={index} className="service-card glass-card">
+              <div className="service-icon">{service.icon}</div>
+              <h3>{service.title}</h3>
+              <p className="service-description">{service.description}</p>
+              <ul className="service-highlights">
+                {service.highlights.map((highlight, i) => (
+                  <li key={i}>
+                    <span className="check-icon">✓</span>
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+              <button className="btn-link">
+                Learn More →
+              </button>
             </div>
-            <style jsx>{`
+          ))}
+        </div>
+
+        <div className="cta-box glass">
+          <h3>Ready for Your Next Adventure?</h3>
+          <p>Packages and detailed itineraries will be available soon. Get in touch to discuss custom journeys.</p>
+          <a href="#contact" className="btn btn-primary">Contact Us</a>
+        </div>
+      </div>
+      <style jsx>{`
         .services-section {
           background: linear-gradient(180deg, 
             transparent 0%, 
@@ -78,7 +78,8 @@ const Services = () => {
           max-width: 700px;
           margin: 0 auto var(--space-12);
           font-size: var(--text-lg);
-          color: rgba(255, 255, 255, 0.8);
+          color: var(--color-summit-charcoal);
+          opacity: 0.85;
         }
 
         .services-grid {
@@ -102,13 +103,14 @@ const Services = () => {
         .service-card h3 {
           font-size: var(--text-2xl);
           margin-bottom: var(--space-3);
-          color: var(--color-glacier-blue);
+          color: var(--color-sage-green-dark);
         }
 
         .service-description {
-          color: rgba(255, 255, 255, 0.85);
+          color: var(--color-summit-charcoal);
           flex-grow: 1;
           margin-bottom: var(--space-4);
+          opacity: 0.9;
         }
 
         .service-highlights {
@@ -121,19 +123,20 @@ const Services = () => {
           align-items: center;
           gap: var(--space-2);
           margin-bottom: var(--space-2);
-          color: rgba(255, 255, 255, 0.7);
+          color: var(--color-summit-charcoal);
           font-size: var(--text-sm);
+          opacity: 0.8;
         }
 
         .check-icon {
-          color: var(--color-golden-hour);
+          color: var(--color-sage-green);
           font-weight: bold;
         }
 
         .btn-link {
           background: none;
           border: none;
-          color: var(--color-sunrise-orange);
+          color: var(--color-sage-green);
           font-weight: 600;
           cursor: pointer;
           font-size: var(--text-base);
@@ -142,7 +145,7 @@ const Services = () => {
         }
 
         .btn-link:hover {
-          color: var(--color-golden-hour);
+          color: var(--color-sage-green-dark);
           transform: translateX(5px);
         }
 
@@ -160,7 +163,8 @@ const Services = () => {
         .cta-box p {
           max-width: 600px;
           margin: 0 auto var(--space-6);
-          color: rgba(255, 255, 255, 0.8);
+          color: var(--color-summit-charcoal);
+          opacity: 0.85;
         }
 
         @media (max-width: 768px) {
@@ -169,8 +173,8 @@ const Services = () => {
           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Services;

@@ -45,8 +45,8 @@ const Hero = () => {
           background: var(--gradient-hero);
           background-image: 
             linear-gradient(135deg, 
-              hsla(210, 45%, 12%, 0.9) 0%, 
-              hsla(215, 30%, 18%, 0.7) 100%);
+              hsla(210, 15%, 15%, 0.92) 0%, 
+              hsla(125, 15%, 25%, 0.75) 100%);
         }
 
         .hero-content {

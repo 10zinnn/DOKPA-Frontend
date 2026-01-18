@@ -1,39 +1,38 @@
 import React from 'react'
 
 const Navigation = () => {
-    const [scrolled, setScrolled] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
 
-    React.useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    const scrollToSection = (id) => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
     };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    return (
-        <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
-            <div className="container nav-container">
-                <div className="nav-logo">
-                    <h3>DOKPA</h3>
-                    <span className="nav-tagline">Expeditions</span>
-                </div>
-                <ul className="nav-links">
-                    <li><a onClick={() => scrollToSection('home')}>Home</a></li>
-                    <li><a onClick={() => scrollToSection('about')}>About</a></li>
-                    <li><a onClick={() => scrollToSection('services')}>Services</a></li>
-                    <li><a onClick={() => scrollToSection('testimonials')}>Testimonials</a></li>
-                    <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
-                </ul>
-            </div>
-            <style jsx>{`
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
+      <div className="container nav-container">
+        <div className="nav-logo">
+          <img src="/logo.png" alt="Dokpa Expeditions" className="logo-image" />
+        </div>
+        <ul className="nav-links">
+          <li><a onClick={() => scrollToSection('home')}>Home</a></li>
+          <li><a onClick={() => scrollToSection('about')}>About</a></li>
+          <li><a onClick={() => scrollToSection('services')}>Services</a></li>
+          <li><a onClick={() => scrollToSection('testimonials')}>Testimonials</a></li>
+          <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
+        </ul>
+      </div>
+      <style jsx>{`
         .nav {
           position: fixed;
           top: 0;
@@ -42,11 +41,12 @@ const Navigation = () => {
           z-index: 1000;
           padding: var(--space-4) 0;
           transition: all var(--transition-base);
+          background: rgba(245, 239, 231, 0.95);
+          backdrop-filter: blur(10px);
         }
 
         .nav.scrolled {
-          background: rgba(23, 37, 50, 0.95);
-          backdrop-filter: blur(10px);
+          background: rgba(245, 239, 231, 0.98);
           box-shadow: var(--shadow-lg);
         }
 
@@ -58,24 +58,12 @@ const Navigation = () => {
 
         .nav-logo {
           display: flex;
-          align-items: baseline;
-          gap: var(--space-2);
+          align-items: center;
         }
 
-        .nav-logo h3 {
-          font-size: var(--text-2xl);
-          font-weight: 800;
-          margin: 0;
-          background: var(--gradient-accent);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-        }
-
-        .nav-tagline {
-          font-size: var(--text-sm);
-          color: var(--color-glacier-blue);
-          font-weight: 500;
+        .logo-image {
+          height: 50px;
+          width: auto;
         }
 
         .nav-links {
@@ -85,7 +73,7 @@ const Navigation = () => {
         }
 
         .nav-links a {
-          color: var(--color-snow-white);
+          color: var(--color-summit-charcoal);
           text-decoration: none;
           font-weight: 500;
           font-size: var(--text-base);
@@ -101,12 +89,12 @@ const Navigation = () => {
           left: 0;
           width: 0;
           height: 2px;
-          background: var(--gradient-accent);
+          background: var(--color-sage-green);
           transition: width var(--transition-base);
         }
 
         .nav-links a:hover {
-          color: var(--color-golden-hour);
+          color: var(--color-sage-green);
         }
 
         .nav-links a:hover::after {
@@ -117,10 +105,14 @@ const Navigation = () => {
           .nav-links {
             display: none;
           }
+          
+          .logo-image {
+            height: 40px;
+          }
         }
       `}</style>
-        </nav>
-    );
+    </nav>
+  );
 };
 
 export default Navigation;

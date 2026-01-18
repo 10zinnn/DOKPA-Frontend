@@ -14,31 +14,40 @@
 
 /* === CUSTOM PROPERTIES === */
 :root {
-  /* Himalayan Color Palette */
-  --color-deep-blue: hsl(210, 45%, 12%);
-  --color-mountain-dark: hsl(215, 30%, 18%);
-  --color-mountain-gray: hsl(220, 20%, 35%);
-  --color-snow-white: hsl(0, 0%, 98%);
-  --color-glacier-blue: hsl(200, 60%, 50%);
-  --color-sunrise-orange: hsl(25, 85%, 55%);
-  --color-golden-hour: hsl(35, 80%, 60%);
-  --color-nomad-brown: hsl(30, 40%, 40%);
-  
-  /* Gradients */
-  --gradient-hero: linear-gradient(135deg, 
-    hsla(210, 45%, 12%, 0.95) 0%, 
-    hsla(215, 30%, 18%, 0.85) 100%);
+  /* Dokpa Expeditions Brand Color Palette */
+  /* Himalayan Sage Green - Primary brand color */
+  --color-sage-green: #6B8E6F;
+  --color-sage-green-light: #8BAA8F;
+  --color-sage-green-dark: #556E58;
+
+  /* Alpine Sand - Light backgrounds and negative space */
+  --color-alpine-sand: #F5EFE7;
+  --color-alpine-sand-dark: #E8DFD4;
+
+  /* Summit Charcoal - Dark text and backgrounds */
+  --color-summit-charcoal: #2E3840;
+  --color-summit-charcoal-light: #3F4A54;
+  --color-summit-charcoal-dark: #1A2228;
+
+  /* Supporting colors */
+  --color-white: #FFFFFF;
+  --color-off-white: hsl(0, 0%, 98%);
+
+  /* Gradients using brand colors */
+  --gradient-hero: linear-gradient(135deg,
+      hsla(0, 0%, 10%, 0.95) 0%,
+      hsla(210, 15%, 20%, 0.85) 100%);
   --gradient-card: linear-gradient(145deg,
-    hsla(220, 20%, 25%, 0.4) 0%,
-    hsla(220, 20%, 15%, 0.6) 100%);
+      rgba(107, 142, 111, 0.1) 0%,
+      rgba(46, 56, 64, 0.2) 100%);
   --gradient-accent: linear-gradient(90deg,
-    var(--color-sunrise-orange) 0%,
-    var(--color-golden-hour) 100%);
-  
+      var(--color-sage-green) 0%,
+      var(--color-sage-green-light) 100%);
+
   /* Typography */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  
+
   /* Font Sizes */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -50,7 +59,7 @@
   --text-4xl: 2.25rem;
   --text-5xl: 3rem;
   --text-6xl: 3.75rem;
-  
+
   /* Spacing */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -64,21 +73,21 @@
   --space-16: 4rem;
   --space-20: 5rem;
   --space-24: 6rem;
-  
+
   /* Border Radius */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 30px rgba(226, 127, 72, 0.3);
-  
+  --shadow-glow: 0 0 30px rgba(107, 142, 111, 0.3);
+
   /* Transitions */
   --transition-fast: 150ms ease-in-out;
   --transition-base: 250ms ease-in-out;
@@ -94,11 +103,11 @@ body {
   font-family: var(--font-primary);
   font-size: var(--text-base);
   line-height: 1.6;
-  color: var(--color-snow-white);
-  background-color: var(--color-deep-blue);
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(72, 140, 200, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(226, 127, 72, 0.03) 0%, transparent 50%);
+  color: var(--color-summit-charcoal);
+  background-color: var(--color-alpine-sand);
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(107, 142, 111, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(107, 142, 111, 0.03) 0%, transparent 50%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -106,7 +115,12 @@ body {
 }
 
 /* === TYPOGRAPHY === */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.2;
@@ -217,7 +231,7 @@ p {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: left var(--transition-slow);
 }
 
@@ -232,12 +246,13 @@ p {
 
 .btn-outline {
   background: transparent;
-  color: var(--color-snow-white);
-  border: 2px solid var(--color-glacier-blue);
+  color: var(--color-summit-charcoal);
+  border: 2px solid var(--color-sage-green);
 }
 
 .btn-outline:hover {
-  background: var(--color-glacier-blue);
+  background: var(--color-sage-green);
+  color: var(--color-white);
   transform: translateY(-2px);
 }
 
@@ -265,6 +280,7 @@ p {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -276,6 +292,7 @@ p {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -287,6 +304,7 @@ p {
     opacity: 0;
     transform: translateX(30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -294,18 +312,24 @@ p {
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.7;
   }
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -337,11 +361,11 @@ p {
     --space-20: 3rem;
     --space-24: 4rem;
   }
-  
+
   .section {
     padding: var(--space-12) 0;
   }
-  
+
   .grid-2,
   .grid-3,
   .grid-4 {
@@ -355,16 +379,16 @@ p {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-deep-blue);
+  background: var(--color-alpine-sand);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-mountain-gray);
+  background: var(--color-sage-green);
   border-radius: var(--radius-sm);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-glacier-blue);
+  background: var(--color-sage-green-dark);
 }
 
 /* === IMAGE OPTIMIZATION === */
