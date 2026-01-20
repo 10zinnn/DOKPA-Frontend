@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
-import Hero from './components/Hero'
-import About from './components/About'
-import Destinations from './components/Destinations'
-import Services from './components/Services'
-import Testimonials from './components/Testimonials'
+import Home from './pages/Home'
+import DestinationsPage from './pages/DestinationsPage'
 import Footer from './components/Footer'
 
 function App() {
@@ -24,16 +22,18 @@ function App() {
     };
 
     return (
-        <div className="app">
-            <Navigation theme={theme} toggleTheme={toggleTheme} />
-            <Hero />
-            <About />
-            <Destinations />
-            <Services />
-            <Testimonials />
-            <Footer />
-        </div>
+        <Router>
+            <div className="app">
+                <Navigation theme={theme} toggleTheme={toggleTheme} />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/destinations" element={<DestinationsPage />} />
+                </Routes>
+                {/* Footer is inside page components for layout control, but could be here if globally consistent */}
+            </div>
+        </Router>
     );
 }
 
 export default App;
+

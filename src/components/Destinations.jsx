@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Destinations = () => {
   const destinations = [
@@ -44,6 +45,10 @@ const Destinations = () => {
             </div>
           ))}
         </div>
+
+        <div className="see-more-container">
+          <Link to="/destinations" className="cta-button secondary">See All Destinations</Link>
+        </div>
       </div>
       <style jsx>{`
         .destinations-section {
@@ -56,6 +61,13 @@ const Destinations = () => {
           grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
           gap: var(--space-10);
           margin-top: var(--space-12);
+          margin-bottom: var(--space-12);
+        }
+
+        .see-more-container {
+            display: flex;
+            justify-content: center;
+            margin-top: var(--space-8);
         }
 
         .destination-card {

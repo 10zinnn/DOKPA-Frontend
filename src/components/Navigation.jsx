@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
 const Navigation = ({ theme, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,31 +15,50 @@ const Navigation = ({ theme, toggleTheme }) => {
   }, []);
 
   const scrollToSection = (id) => {
+    if (location.pathname !== '/') {
+      navigate('/#' + id);
+      return;
+    }
+
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
+  // Handle hash scroll after navigation
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   return (
     <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
-        <div className="nav-logo">
+        <Link to="/" className="nav-logo">
           <img
             src={theme === 'dark' ? "/logo-white.svg" : "/logo-black.svg"}
             alt="Dokpa Expeditions"
             className="logo-image"
           />
-        </div>
+        </Link>
         <div className="nav-right">
           <ul className="nav-links">
             <li><a onClick={() => scrollToSection('home')}>Home</a></li>
             <li><a onClick={() => scrollToSection('about')}>About</a></li>
-            <li><a onClick={() => scrollToSection('destinations')}>Destinations</a></li>
+            <li><Link to="/destinations">Destinations</Link></li>
             <li><a onClick={() => scrollToSection('services')}>Services</a></li>
             <li><a onClick={() => scrollToSection('testimonials')}>Testimonials</a></li>
             <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
           </ul>
+
           <button
             className="theme-toggle"
             onClick={toggleTheme}
