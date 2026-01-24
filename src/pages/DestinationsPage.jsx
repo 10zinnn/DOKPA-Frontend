@@ -1,38 +1,8 @@
-import React, { useEffect } from 'react'
-import Footer from '../components/Footer'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { destinationsData } from '../data/destinationsData'
 
 const DestinationsPage = () => {
-  const destinations = [
-    {
-      title: 'Kargil',
-      description: 'The ancient gateway connecting Ladakh with the rest of the world. A land of dramatic contrast, from lush valleys to stark mountain passes.',
-      image: '/dest-kargil.jpg',
-      features: ['Historic Sites', 'Suru Valley', 'Aryan Valley'],
-      details: 'Kargil is more than just a transit point. It is a place of historical significance and breathtaking natural beauty. From the legendary battlefields of Drass to the hidden villages of the Aryan valley, it offers a deep dive into the resilient spirit of the Himalayas.'
-    },
-    {
-      title: 'Leh & Ladakh',
-      description: 'The high-altitude heart of the region, where ancient Buddhist culture meets futuristic landscapes.',
-      image: '/dest-leh.jpg',
-      features: ['Nubra Valley', 'Pangong Lake', 'Ancient Monasteries'],
-      details: 'Leh is the pulse of Ladakh. Surrounded by peaks, it serves as the perfect base for exploring the high-altitude wonders of the region. Visit the moon-like landscapes of Lamayuru, the crystal waters of Pangong Lake, and the vast sand dunes of Nubra.'
-    },
-    {
-      title: 'Zanskar Valley',
-      description: 'The hidden frontier. A remote wilderness where time seems to have stood still for centuries.',
-      image: '/dest-zanskar.jpg',
-      features: ['Phugtal Monastery', 'Padum Valley', 'Shinku La Pass'],
-      details: 'Zanskar is for the true explorer. Remote, rugged, and deeply spiritual, it is home to some of the most isolated monasteries in the world. The trek to Phugtal, built into a cliffside cave, is a journey of a lifetime.'
-    },
-    {
-      title: 'Nubra Valley',
-      description: 'The valley of flowers. A unique landscape of cold deserts, bactrian camels, and lush orchards.',
-      image: '/dest-nubra.jpg',
-      features: ['Hunder Dunes', 'Diskit Monastery', 'Panamik Hot Springs'],
-      details: 'Nubra offers a surprising diversity of landscapes. Once a key stop on the Silk Road, it now welcomes travelers with its famous double-humped camels, dramatic vistas, and fertile valleys hidden between towering ridges.'
-    }
-  ];
-
   return (
     <div className="destinations-page">
       <header className="page-header">
@@ -45,29 +15,35 @@ const DestinationsPage = () => {
 
       <section className="destinations-list">
         <div className="container">
-          {destinations.map((dest, index) => (
-            <div key={index} className="dest-item reveal" style={{ transitionDelay: `${index * 0.15}s` }}>
+          {destinationsData.map((dest, index) => (
+            <Link
+              key={dest.id}
+              to={`/destinations/${dest.id}`}
+              className="dest-item reveal"
+              style={{ transitionDelay: `${index * 0.15}s` }}
+            >
               <div className="dest-item-image">
-                <img src={dest.image} alt={`${dest.title} - ${dest.description}`} loading="lazy" />
+                <img src={dest.image} alt={dest.title} loading="lazy" />
               </div>
               <div className="dest-item-content">
                 <div className="dest-header">
                   <h3>{dest.title}</h3>
+                  <span className="dest-subtitle">{dest.subtitle}</span>
                   <div className="dest-features">
                     {dest.features.map((f, i) => (
                       <span key={i} className="feature-tag">{f}</span>
                     ))}
                   </div>
                 </div>
-                <p className="dest-desc">{dest.description}</p>
+                <p className="dest-desc">{dest.shortDescription}</p>
                 <div className="dest-details-box glass-panel">
-                  <p>{dest.details}</p>
+                  <p>{dest.fullDescription}</p>
                 </div>
                 <div className="dest-action">
-                  <a href="#contact" className="btn btn-primary">Inquire About {dest.title}</a>
+                  <span className="btn btn-primary">Explore {dest.title} →</span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -138,6 +114,8 @@ const DestinationsPage = () => {
           box-shadow: var(--shadow-soft);
           border: 1px solid var(--glass-border);
           transition: var(--transition);
+          text-decoration: none;
+          color: inherit;
         }
 
         .dest-item:nth-child(even) {
@@ -182,7 +160,16 @@ const DestinationsPage = () => {
 
         .dest-header h3 {
           font-size: var(--h2);
+          margin-bottom: var(--s-2);
+        }
+
+        .dest-subtitle {
+          display: block;
+          font-family: var(--font-serif);
+          font-size: 1.1rem;
+          color: var(--text-muted);
           margin-bottom: var(--s-4);
+          font-style: italic;
         }
 
         .dest-features {
@@ -228,6 +215,10 @@ const DestinationsPage = () => {
           margin-top: auto;
         }
 
+        .dest-action .btn {
+          display: inline-block;
+        }
+
         @media (max-width: 968px) {
           .dest-item {
             grid-template-columns: 1fr;
@@ -245,4 +236,3 @@ const DestinationsPage = () => {
 };
 
 export default DestinationsPage;
-

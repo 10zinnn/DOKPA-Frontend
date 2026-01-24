@@ -1,27 +1,25 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { destinationsData } from '../data/destinationsData'
 
 const Destinations = () => {
-  const featured = [
-    {
-      title: 'Kargil',
-      subtitle: 'The Gateway to Adventure',
-      image: '/dest-kargil.jpg',
-      tag: 'Most Authentic'
-    },
-    {
-      title: 'Leh & Ladakh',
-      subtitle: 'Land of High Passes',
-      image: '/dest-leh.jpg',
-      tag: 'Must Visit'
-    },
-    {
-      title: 'Zanskar Valley',
-      subtitle: 'The Untouched Frontier',
-      image: '/dest-zanskar.jpg',
-      tag: 'Hidden Gem'
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
+  // Use first 3 destinations for home page preview
+  const featured = destinationsData.slice(0, 3);
+
+  const handleCardClick = (e, destId) => {
+    // On home page, prevent navigation and scroll to top of destinations section
+    if (isHomePage) {
+      e.preventDefault();
+      const element = document.getElementById('destinations');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
-  ];
+    // On other pages, navigate to destination detail page
+  };
 
   return (
     <section id="destinations" className="section">
@@ -36,7 +34,13 @@ const Destinations = () => {
 
         <div className="destinations-preview-grid">
           {featured.map((dest, index) => (
-            <Link to="/destinations" key={index} className="dest-preview-card reveal" style={{ transitionDelay: `${index * 0.1}s` }}>
+            <Link 
+              to={`/destinations/${dest.id}`}
+              key={dest.id} 
+              className="dest-preview-card reveal" 
+              style={{ transitionDelay: `${index * 0.1}s` }}
+              onClick={(e) => handleCardClick(e, dest.id)}
+            >
               <div className="dest-image">
                 <img src={dest.image} alt={`${dest.title} - ${dest.subtitle}`} loading="lazy" />
                 <span className="dest-tag">{dest.tag}</span>
@@ -44,7 +48,9 @@ const Destinations = () => {
               <div className="dest-info">
                 <h3>{dest.title}</h3>
                 <p>{dest.subtitle}</p>
-                <span className="view-link">Explore Details</span>
+                <span className="view-link">
+                  {isHomePage ? 'Learn More' : 'View Details'} →
+                </span>
               </div>
             </Link>
           ))}
@@ -129,7 +135,7 @@ const Destinations = () => {
           color: var(--accent);
           text-transform: uppercase;
           letter-spacing: 0.1em;
-          display: flex;
+          display: inline-flex;
           align-items: center;
           gap: var(--s-2);
         }
