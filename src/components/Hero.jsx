@@ -88,6 +88,16 @@ const Hero = () => {
           gap: var(--s-4);
         }
 
+        .hero .btn-secondary {
+          color: white;
+          border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero .btn-secondary:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: white;
+        }
+
         .scroll-hint {
           position: absolute;
           bottom: var(--s-12);
