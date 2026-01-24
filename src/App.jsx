@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navigation from './components/Navigation'
 import Home from './pages/Home'
 import DestinationsPage from './pages/DestinationsPage'
+import ActivitiesPage from './pages/ActivitiesPage'
+import ActivityDetailPage from './pages/ActivityDetailPage'
 import Footer from './components/Footer'
 
 // Scroll To Top component to handle route changes
@@ -148,6 +150,8 @@ function App() {
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/destinations" element={<DestinationsPage />} />
+                            <Route path="/activities" element={<ActivitiesPage />} />
+                            <Route path="/activities/:activityId" element={<ActivityDetailPage />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>
                     </main>

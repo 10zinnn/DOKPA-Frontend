@@ -1,68 +1,22 @@
 import React, { useRef, useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { activitiesData } from '../data/activitiesData'
 
 const Activities = () => {
   const scrollRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
 
-  const activities = [
-    {
-      title: 'Rock Climbing',
-      icon: '🧗',
-      description: 'Scale dramatic cliff faces and granite walls with expert guidance.',
-      difficulty: 'Intermediate to Advanced',
-      season: 'Apr - Oct',
-      image: '/rock-climbing.jpg'
-    },
-    {
-      title: 'Ice Climbing',
-      icon: '🧊',
-      description: 'Conquer frozen waterfalls and glacial formations in winter wonderland.',
-      difficulty: 'Advanced',
-      season: 'Dec - Feb',
-      image: '/ice-climbing.jpg'
-    },
-    {
-      title: 'Motor Biking',
-      icon: '🏍️',
-      description: 'Ride through the highest motorable passes on legendary Himalayan routes.',
-      difficulty: 'All Levels',
-      season: 'May - Sep',
-      image: '/motor-biking.jpg'
-    },
-    {
-      title: 'River Rafting',
-      icon: '🚣',
-      description: 'Navigate thrilling rapids through pristine mountain river valleys.',
-      difficulty: 'Beginner to Advanced',
-      season: 'Jun - Aug',
-      image: '/river-rafting.jpg'
-    },
-    {
-      title: 'Trekking',
-      icon: '🥾',
-      description: 'Journey through ancient trails, remote villages, and breathtaking landscapes.',
-      difficulty: 'All Levels',
-      season: 'May - Oct',
-      image: '/trekking.jpg'
-    },
-    {
-      title: 'Expeditions',
-      icon: '⛰️',
-      description: 'Multi-day adventures to summit peaks and explore uncharted territories.',
-      difficulty: 'Advanced',
-      season: 'Jun - Sep',
-      image: '/peak-climbing.jpg'
-    },
-    {
-      title: 'Cultural Tours',
-      icon: '🏛️',
-      description: 'Immerse in Buddhist monasteries, local traditions, and Ladakhi heritage.',
-      difficulty: 'Easy',
-      season: 'Year Round',
-      image: '/cultural-tours.jpg'
-    }
-  ];
+  // Use shared data
+  const activities = activitiesData.map(activity => ({
+    title: activity.title,
+    icon: activity.icon,
+    description: activity.shortDescription,
+    difficulty: activity.difficulty,
+    season: activity.season,
+    image: activity.image,
+    id: activity.id
+  }));
 
   // Create infinite loop by tripling the array
   const infiniteActivities = [...activities, ...activities, ...activities];
@@ -163,7 +117,11 @@ const Activities = () => {
           
           <div className="activities-scroll-container" ref={scrollRef}>
             {infiniteActivities.map((activity, index) => (
-              <div key={index} className="activity-card">
+              <Link
+                key={index}
+                to={`/activities/${activity.id}`}
+                className="activity-card"
+              >
                 <div className="activity-image">
                   <img src={activity.image} alt={activity.title} loading="lazy" />
                   <div className="activity-icon">{activity.icon}</div>
@@ -181,11 +139,11 @@ const Activities = () => {
                       <span className="meta-value">{activity.season}</span>
                     </div>
                   </div>
-                  <a href="#contact" className="activity-link">
-                    Book Now →
-                  </a>
+                  <span className="activity-link">
+                    View Details →
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
@@ -212,6 +170,10 @@ const Activities = () => {
 
         <div className="scroll-hint reveal" style={{ transitionDelay: '0.4s' }}>
           <span>← Swipe or scroll to explore →</span>
+        </div>
+
+        <div className="view-all-container reveal" style={{ transitionDelay: '0.5s' }}>
+          <Link to="/activities" className="btn btn-secondary">View All Activities</Link>
         </div>
       </div>
       <style>{`
@@ -250,6 +212,8 @@ const Activities = () => {
           border: 1px solid var(--glass-border);
           display: flex;
           flex-direction: column;
+          text-decoration: none;
+          color: inherit;
         }
 
         .activity-card:hover {
@@ -357,7 +321,7 @@ const Activities = () => {
           transition: var(--transition);
         }
 
-        .activity-link:hover {
+        .activity-card:hover .activity-link {
           gap: var(--s-4);
           color: var(--accent-hover);
         }
@@ -440,6 +404,12 @@ const Activities = () => {
           color: var(--text-muted);
           font-size: 0.9rem;
           font-style: italic;
+        }
+
+        .view-all-container {
+          display: flex;
+          justify-content: center;
+          margin-top: var(--s-8);
         }
 
         @media (max-width: 1200px) {

@@ -2,26 +2,9 @@
 
 Premium travel website for Himalayan adventures in Ladakh, India.
 
-## 🚀 Features
+![Dokpa Expeditions](public/hero-bg.jpg)
 
-- **Modern React SPA** with React Router for seamless navigation
-- **Dark/Light Theme Toggle** with localStorage persistence
-- **Responsive Design** - Mobile-first approach with hamburger menu
-- **Smooth Animations** - Intersection Observer for reveal effects
-- **Accessibility** - WCAG compliant with focus states and skip links
-- **Performance Optimized** - Lazy loading images, reduced motion support
-- **SEO Ready** - Meta tags and semantic HTML
-- **Error Handling** - Error boundaries and 404 page
-
-## 🛠️ Tech Stack
-
-- React 18.3.1
-- React Router DOM 7.12.0
-- Vite 6.0.5
-- CSS3 with Custom Properties
-- Modern JavaScript (ES6+)
-
-## 📦 Installation
+## 🚀 Quick Start
 
 ```bash
 # Install dependencies
@@ -32,10 +15,66 @@ npm run dev
 
 # Build for production
 npm run build
-
-# Preview production build
-npm run preview
 ```
+
+Visit: http://localhost:5173
+
+## 🎯 Features
+
+- **Modern React SPA** with React Router
+- **Dark/Light Theme Toggle** with localStorage
+- **Infinite Scroll Activities Carousel** with dot indicators
+- **Responsive Design** with mobile hamburger menu
+- **Smooth Animations** with Intersection Observer
+- **Accessibility Compliant** (WCAG AA)
+- **SEO Optimized** with meta tags
+- **Error Boundaries** and 404 page
+- **Contact Form** with validation
+- **Dedicated Activity Pages** with detailed information
+
+## 🛠️ Tech Stack
+
+- React 18.3.1
+- React Router DOM 7.12.0
+- Vite 6.0.5
+- CSS3 with Custom Properties
+
+## 📁 Project Structure
+
+```
+dokpa-expeditions/
+├── docs/                    # Documentation
+├── public/                  # Static assets
+├── src/
+│   ├── components/         # React components
+│   ├── data/              # Shared data
+│   ├── pages/             # Page components
+│   ├── App.jsx            # Main app
+│   └── index.css          # Global styles
+├── index.html             # HTML template
+└── package.json           # Dependencies
+```
+
+## 🌐 Pages
+
+- **Home** (`/`) - Hero, About, Activities, Destinations, Testimonials, Contact
+- **Activities** (`/activities`) - All activities grid view
+- **Activity Details** (`/activities/:id`) - Individual activity pages
+- **Destinations** (`/destinations`) - Destination information
+- **404** - Custom not found page
+
+## 📚 Documentation
+
+Comprehensive documentation is available in the `docs/` folder:
+
+- **[README.md](docs/README.md)** - Full project documentation
+- **[QUICKSTART.md](docs/QUICKSTART.md)** - Quick start guide
+- **[DEPLOYMENT.md](docs/DEPLOYMENT.md)** - Deployment instructions
+- **[FIXES_IMPLEMENTED.md](docs/FIXES_IMPLEMENTED.md)** - All improvements made
+- **[ACTIVITIES_DESIGN.md](docs/ACTIVITIES_DESIGN.md)** - Activities section design rationale
+- **[ACTIVITIES_VISUAL_GUIDE.md](docs/ACTIVITIES_VISUAL_GUIDE.md)** - Visual design guide
+- **[INFINITE_SCROLL_GUIDE.md](docs/INFINITE_SCROLL_GUIDE.md)** - Infinite scroll technical guide
+- **[ACTIVITIES_PAGES_GUIDE.md](docs/ACTIVITIES_PAGES_GUIDE.md)** - Activities pages guide
 
 ## 🎨 Design System
 
@@ -48,75 +87,6 @@ npm run preview
 ### Typography
 - **Headings**: Outfit (serif)
 - **Body**: Inter (sans-serif)
-- Fluid typography using clamp()
-
-### Spacing Scale
-- Uses consistent spacing system (--s-1 through --s-24)
-- Based on 0.25rem increments
-
-## 📁 Project Structure
-
-```
-src/
-├── components/
-│   ├── About.jsx
-│   ├── ContactForm.jsx
-│   ├── Destinations.jsx
-│   ├── Footer.jsx
-│   ├── Hero.jsx
-│   ├── Loading.jsx
-│   ├── Navigation.jsx
-│   ├── Navigation.css
-│   ├── Services.jsx
-│   ├── Testimonials.jsx
-│   └── TrustBar.jsx
-├── pages/
-│   ├── Home.jsx
-│   └── DestinationsPage.jsx
-├── App.jsx
-├── main.jsx
-└── index.css
-```
-
-## 🌐 Pages
-
-- **Home** (`/`) - Hero, About, Destinations, Services, Testimonials, Contact
-- **Destinations** (`/destinations`) - Detailed destination information
-- **404** - Custom not found page
-
-## ♿ Accessibility Features
-
-- Skip to content link
-- Keyboard navigation support
-- Focus visible states
-- ARIA labels on interactive elements
-- Semantic HTML structure
-- Reduced motion support
-
-## 🎯 Performance
-
-- Lazy loading images
-- Optimized animations
-- Code splitting ready
-- Font display swap
-- Mobile-optimized parallax
-
-## 📱 Responsive Breakpoints
-
-- Mobile: < 768px
-- Tablet: 768px - 968px
-- Desktop: > 968px
-
-## 🔧 Configuration
-
-### Theme Toggle
-Theme preference is saved to localStorage and respects system preferences.
-
-### Environment Variables
-Add to `.env` file:
-```
-VITE_API_URL=your_api_url
-```
 
 ## 🚢 Deployment
 
@@ -125,20 +95,13 @@ Build the project:
 npm run build
 ```
 
-The `dist` folder contains the production-ready files.
+The `dist` folder contains production-ready files.
 
-### Deploy to Hostinger
-1. Build the project
-2. Upload `dist` folder contents to public_html
-3. Configure .htaccess for SPA routing
+See [DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed deployment instructions.
 
 ## 📄 License
 
 © 2024 Dokpa Expeditions. All rights reserved.
-
-## 🤝 Contributing
-
-This is a private project. For inquiries, contact expeditions@dokpa.com
 
 ---
 
