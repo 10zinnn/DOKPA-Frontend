@@ -2,154 +2,156 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Destinations = () => {
-  const destinations = [
+  const featured = [
     {
       title: 'Kargil',
-      description: 'Discover the gateway to Ladakh, rich in history, brave stories, and stunning valleys.',
+      subtitle: 'The Gateway to Adventure',
       image: '/dest-kargil.jpg',
-      features: ['Historic Sites', 'Suru Valley', 'Aryan Valley']
+      tag: 'Most Authentic'
     },
     {
       title: 'Leh & Ladakh',
-      description: 'Experience the heart of the high-altitude desert, ancient monasteries, and azure lakes.',
+      subtitle: 'Land of High Passes',
       image: '/dest-leh.jpg',
-      features: ['Nubra Valley', 'Pangong Lake', 'Ancient Monasteries']
+      tag: 'Must Visit'
+    },
+    {
+      title: 'Zanskar Valley',
+      subtitle: 'The Untouched Frontier',
+      image: '/dest-zanskar.jpg',
+      tag: 'Hidden Gem'
     }
   ];
 
   return (
-    <section id="destinations" className="section destinations-section">
+    <section id="destinations" className="section">
       <div className="container">
-        <h2 className="section-title">Iconic Destinations</h2>
-        <p className="section-intro">
-          Traverse the most breath-taking landscapes of the Trans-Himalayas with our specialized local expertise.
-        </p>
+        <div className="section-header reveal">
+          <span className="section-eyebrow">Explore the Region</span>
+          <h2 className="section-title-alt">Iconic Landscapes</h2>
+          <p className="section-intro">
+            Journey through a mosaic of snow-capped peaks, azure lakes, and ancient cultures.
+          </p>
+        </div>
 
-        <div className="destinations-grid">
-          {destinations.map((dest, index) => (
-            <div
-              key={index}
-              className="destination-card"
-              style={{ backgroundImage: `url(${dest.image})` }}
-            >
-              <div className="dest-overlay"></div>
-              <div className="dest-content">
-                <h3>{dest.title}</h3>
-                <p className="dest-description">{dest.description}</p>
-                <div className="dest-tags">
-                  {dest.features.map((feature, i) => (
-                    <span key={i} className="dest-tag">{feature}</span>
-                  ))}
-                </div>
+        <div className="destinations-preview-grid">
+          {featured.map((dest, index) => (
+            <Link to="/destinations" key={index} className="dest-preview-card reveal" style={{ transitionDelay: `${index * 0.1}s` }}>
+              <div className="dest-image">
+                <img src={dest.image} alt={dest.title} />
+                <span className="dest-tag">{dest.tag}</span>
               </div>
-            </div>
+              <div className="dest-info">
+                <h3>{dest.title}</h3>
+                <p>{dest.subtitle}</p>
+                <span className="view-link">Explore Details</span>
+              </div>
+            </Link>
           ))}
         </div>
 
-        <div className="see-more-container">
-          <Link to="/destinations" className="cta-button secondary">See All Destinations</Link>
+        <div className="see-more-container reveal">
+          <Link to="/destinations" className="btn btn-secondary">View All Destinations</Link>
         </div>
       </div>
-      <style jsx>{`
-        .destinations-section {
-          background: var(--bg-secondary);
-          padding: var(--space-20) 0;
-        }
-
-        .destinations-grid {
+      <style>{`
+        .destinations-preview-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-          gap: var(--space-10);
-          margin-top: var(--space-12);
-          margin-bottom: var(--space-12);
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: var(--s-8);
+          margin-bottom: var(--s-12);
         }
 
-        .see-more-container {
-            display: flex;
-            justify-content: center;
-            margin-top: var(--space-8);
-        }
-
-        .destination-card {
-          height: 500px;
-          position: relative;
-          border-radius: var(--radius-2xl);
+        .dest-preview-card {
+          text-decoration: none;
+          color: inherit;
+          background: var(--bg-app);
+          border-radius: var(--radius-outer);
           overflow: hidden;
-          background-size: cover;
-          background-position: center;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          transition: all var(--transition-slow);
-          box-shadow: 0 0 0 1px var(--glass-border), var(--shadow-lg);
-          outline: 1px solid transparent;
-          isolation: isolate;
+          box-shadow: var(--shadow-soft);
+          transition: var(--transition);
+          border: 1px solid var(--glass-border);
         }
 
-        .destination-card:hover {
-          transform: scale(1.02);
-          box-shadow: 0 0 0 1px var(--glass-border), var(--shadow-2xl), 0 0 20px var(--shadow-glow);
+        .dest-preview-card:hover {
+          transform: translateY(-8px);
+          box-shadow: var(--shadow-strong);
         }
 
-        .dest-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.1) 0%,
-            rgba(0, 0, 0, 0.4) 50%,
-            rgba(0, 0, 0, 0.85) 100%
-          );
-        }
-
-        .dest-content {
+        .dest-image {
           position: relative;
-          z-index: 2;
-          padding: var(--space-10);
-          color: white;
+          height: 300px;
+          overflow: hidden;
         }
 
-        .destination-card h3 {
-          font-size: var(--text-4xl);
-          margin-bottom: var(--space-4);
-          color: white;
-          font-weight: 700;
+        .dest-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 1.2s ease;
         }
 
-        .dest-description {
-          color: rgba(255, 255, 255, 0.9);
-          margin-bottom: var(--space-6);
-          font-size: var(--text-lg);
-          line-height: 1.6;
-          max-width: 90%;
-        }
-
-        .dest-tags {
-          display: flex;
-          gap: var(--space-3);
-          flex-wrap: wrap;
+        .dest-preview-card:hover .dest-image img {
+          transform: scale(1.1);
         }
 
         .dest-tag {
-          background: rgba(255, 255, 255, 0.15);
-          backdrop-filter: blur(5px);
-          padding: var(--space-1) var(--space-4);
-          border-radius: var(--radius-full);
-          font-size: var(--text-xs);
+          position: absolute;
+          top: var(--s-4);
+          right: var(--s-4);
+          background: var(--accent);
+          color: white;
+          padding: 0.4rem 1rem;
+          border-radius: 99px;
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.05em;
+        }
+
+        .dest-info {
+          padding: var(--s-8);
+        }
+
+        .dest-info h3 {
+          font-size: 1.5rem;
+          margin-bottom: var(--s-1);
+        }
+
+        .dest-info p {
+          color: var(--text-muted);
+          font-size: 0.95rem;
+          margin-bottom: var(--s-6);
+        }
+
+        .view-link {
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: var(--accent);
           text-transform: uppercase;
-          letter-spacing: 1px;
-          border: 1px solid rgba(255, 255, 255, 0.3);
+          letter-spacing: 0.1em;
+          display: flex;
+          align-items: center;
+          gap: var(--s-2);
+        }
+
+        .view-link::after {
+          content: '→';
+          transition: transform 0.3s ease;
+        }
+
+        .dest-preview-card:hover .view-link::after {
+          transform: translateX(5px);
+        }
+
+        .see-more-container {
+          display: flex;
+          justify-content: center;
+          margin-top: var(--s-8);
         }
 
         @media (max-width: 768px) {
-          .destinations-grid {
-            grid-template-columns: 1fr;
-          }
-          .destination-card {
-            height: 400px;
-          }
-           .destination-card h3 {
-            font-size: var(--text-3xl);
+          .dest-image {
+            height: 250px;
           }
         }
       `}</style>
@@ -158,3 +160,4 @@ const Destinations = () => {
 };
 
 export default Destinations;
+

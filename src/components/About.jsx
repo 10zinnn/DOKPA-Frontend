@@ -4,142 +4,168 @@ const About = () => {
   return (
     <section id="about" className="section">
       <div className="container">
-        <h2 className="section-title">About Dokpa Expeditions</h2>
-
         <div className="about-grid">
-          <div className="about-content">
+          <div className="about-content reveal">
+            <span className="section-eyebrow">Our Philosophy</span>
+            <h2 className="section-title-alt">Rooted in the Nomadic Spirit</h2>
             <div className="about-text">
-              <h3>Inspired by Nomadic Spirit</h3>
               <p>
-                Dokpa Expeditions is named after the nomadic herders of the high Himalayas,
-                reflecting our deep connection to Ladakh's landscape and culture. We are rooted
-                in responsibility, community, and profound respect for nature.
+                Dokpa Expeditions is named after the nomadic herders of the High Himalayas,
+                capturing their resilience, wisdom, and deep connection to the earth.
+                We don't just guide; we bridge the gap between traveler and mountain.
               </p>
               <p>
-                Based in Ladakh, we offer thoughtfully guided journeys that connect travelers
-                with the authentic essence of the Himalayas—its landscapes, culture, and the
-                people who call these mountains home.
+                Based in the heart of Ladakh, we focus on high-impact, low-footprint
+                journeys that empower local communities while providing you with an
+                unfiltered Himalayan experience.
               </p>
             </div>
 
-            <div className="values-grid">
-              <div className="value-card glass-card">
-                <div className="value-icon">🏔️</div>
-                <h4>Guidance Over Risk</h4>
-                <p>Safety and experience are our foundations</p>
-              </div>
-              <div className="value-card glass-card">
-                <div className="value-icon">🌱</div>
-                <h4>Sustainability</h4>
-                <p>Protecting nature for future generations</p>
-              </div>
-              <div className="value-card glass-card">
-                <div className="value-icon">🤝</div>
-                <h4>Community Focus</h4>
-                <p>Supporting local communities and culture</p>
-              </div>
-              <div className="value-card glass-card">
-                <div className="value-icon">✨</div>
-                <h4>Authentic Connection</h4>
-                <p>Meaningful travel over mass tourism</p>
-              </div>
+            <div className="values-list">
+              {[
+                { title: 'Local Wisdom', icon: '🏔️', desc: 'Guided by those who call these peaks home.' },
+                { title: 'Ethical Travel', icon: '🌱', desc: 'Sustainability is not a choice, it\'s our foundation.' },
+                { title: 'True Safety', icon: '🛡️', desc: 'Expertise that prioritizes your journey above all.' }
+              ].map((v, i) => (
+                <div key={i} className="value-item">
+                  <span className="value-icon">{v.icon}</span>
+                  <div>
+                    <h4>{v.title}</h4>
+                    <p>{v.desc}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="about-image">
-            <div className="image-wrapper glass-card">
+          <div className="about-visual reveal" style={{ transitionDelay: '0.2s' }}>
+            <div className="image-frame">
               <img src="/about-image.jpg" alt="Ladakh Mountains" />
+              <div className="experience-badge gold">
+                <span className="years">15+</span>
+                <span className="label">Years of Mastery</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <style jsx>{`
+      <style>{`
         .about-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: var(--space-12);
+          grid-template-columns: 1.2fr 1fr;
+          gap: var(--s-24);
           align-items: center;
         }
 
-        .about-text h3 {
-          color: var(--color-sage-green);
-          margin-bottom: var(--space-4);
+        .section-eyebrow {
+          color: var(--accent);
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
+          font-weight: 600;
+          font-size: 0.85rem;
+          margin-bottom: var(--s-2);
+          display: block;
+        }
+
+        .section-title-alt {
+          font-size: var(--h2);
+          margin-bottom: var(--s-8);
         }
 
         .about-text p {
-          font-size: var(--text-lg);
-          line-height: 1.8;
-          color: var(--color-summit-charcoal);
+          font-size: var(--body);
+          color: var(--text-muted);
+          margin-bottom: var(--s-6);
         }
 
-        .values-grid {
+        .values-list {
+          margin-top: var(--s-12);
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: var(--space-6);
-          margin-top: var(--space-8);
+          gap: var(--s-6);
         }
 
-        .value-card {
-          text-align: center;
-          padding: var(--space-6);
+        .value-item {
+          display: flex;
+          gap: var(--s-4);
+          align-items: flex-start;
         }
 
         .value-icon {
-          font-size: var(--text-4xl);
-          margin-bottom: var(--space-3);
+          font-size: 1.5rem;
+          padding: var(--s-2);
+          background: var(--bg-alt);
+          border-radius: var(--radius-inner);
         }
 
-        .value-card h4 {
-          font-size: var(--text-lg);
-          margin-bottom: var(--space-2);
-          color: var(--color-sage-green-dark);
+        .value-item h4 {
+          margin-bottom: var(--s-1);
+          font-size: 1.1rem;
         }
 
-        .value-card p {
-          font-size: var(--text-sm);
-          color: var(--color-summit-charcoal);
+        .value-item p {
+          font-size: 0.9rem;
+          color: var(--text-muted);
           margin: 0;
-          opacity: 0.8;
         }
 
-        .about-image {
+        .image-frame {
           position: relative;
-        }
-
-        .image-wrapper {
+          border-radius: var(--radius-outer);
           overflow: hidden;
-          border-radius: var(--radius-xl);
-          aspect-ratio: 4/5;
+          box-shadow: var(--shadow-strong);
         }
 
-        .image-wrapper img {
+        .image-frame img {
           width: 100%;
-          height: 100%;
+          aspect-ratio: 4/5;
           object-fit: cover;
-          transition: transform var(--transition-slow);
+          transition: transform 1s ease;
         }
 
-        .image-wrapper:hover img {
+        .image-frame:hover img {
           transform: scale(1.05);
+        }
+
+        .experience-badge {
+          position: absolute;
+          bottom: var(--s-8);
+          right: var(--s-8);
+          background: var(--accent);
+          color: white;
+          padding: var(--s-6);
+          border-radius: var(--radius-inner);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          box-shadow: var(--shadow-strong);
+        }
+
+        .experience-badge.gold {
+          background: var(--color-charcoal);
+          border: 1px solid var(--color-gold);
+        }
+
+        .experience-badge .years {
+          font-size: 2rem;
+          font-weight: 800;
+          font-family: var(--font-serif);
+          color: var(--color-gold);
+        }
+
+        .experience-badge .label {
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          white-space: nowrap;
         }
 
         @media (max-width: 968px) {
           .about-grid {
             grid-template-columns: 1fr;
+            gap: var(--s-12);
           }
-
-          .values-grid {
-            grid-template-columns: 1fr 1fr;
-          }
-
-          .about-image {
+          .about-visual {
             order: -1;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .values-grid {
-            grid-template-columns: 1fr;
           }
         }
       `}</style>
@@ -148,3 +174,5 @@ const About = () => {
 };
 
 export default About;
+
+

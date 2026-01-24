@@ -1,113 +1,132 @@
 import React from 'react'
 
 const Hero = () => {
-    return (
-        <section id="home" className="hero">
-            <div className="hero-overlay"></div>
-            <div className="hero-content">
-                <div className="container">
-                    <h1 className="hero-title animate-fade-in">
-                        Explore the Authentic Himalayas
-                    </h1>
-                    <p className="hero-subtitle animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                        Thoughtfully guided journeys through Ladakh's majestic landscapes,
-                        connecting you with nature, culture, and community
-                    </p>
-                    <div className="hero-buttons animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                        <a href="#services" className="btn btn-primary">Discover Journeys</a>
-                        <a href="#about" className="btn btn-outline">About Dokpa</a>
-                    </div>
-                </div>
-                <div className="scroll-indicator animate-pulse">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="7 13 12 18 17 13"></polyline>
-                        <polyline points="7 6 12 11 17 6"></polyline>
-                    </svg>
-                </div>
-            </div>
-            <style jsx>{`
+  return (
+    <section id="home" className="hero">
+      <div className="hero-overlay"></div>
+      <div className="hero-content">
+        <div className="container">
+          <span className="hero-eyebrow reveal">The Trans-Himalayas Awaits</span>
+          <h1 className="hero-title reveal" style={{ transitionDelay: '0.1s' }}>
+            Beyond the Ordinary,<br />
+            <span className="text-accent">Above the Clouds.</span>
+          </h1>
+          <p className="hero-subtitle reveal" style={{ transitionDelay: '0.2s' }}>
+            Bespoke expeditions through Ladakh's ancient landscapes.
+            Experience the raw majesty of the Himalayas with expert local guidance.
+          </p>
+          <div className="hero-buttons reveal" style={{ transitionDelay: '0.3s' }}>
+            <a href="#services" className="btn btn-primary">Start Your Journey</a>
+            <a href="#about" className="btn btn-secondary">Our Story</a>
+          </div>
+        </div>
+      </div>
+      <div className="scroll-hint animate-float">
+        <span>Explore</span>
+        <div className="hint-line"></div>
+      </div>
+      <style>{`
         .hero {
           position: relative;
           height: 100vh;
           display: flex;
           align-items: center;
-          justify-content: center;
           background-image: url('/hero-bg.jpg');
           background-size: cover;
           background-position: center;
           background-attachment: fixed;
+          color: white;
           overflow: hidden;
         }
 
         .hero-overlay {
           position: absolute;
           inset: 0;
-          background: var(--gradient-hero);
-          background-image: 
-            linear-gradient(135deg, 
-              hsla(210, 15%, 15%, 0.92) 0%, 
-              hsla(125, 15%, 25%, 0.75) 100%);
+          background: linear-gradient(
+            to right,
+            rgba(26, 31, 35, 0.9) 0%,
+            rgba(26, 31, 35, 0.4) 100%
+          );
         }
 
         .hero-content {
           position: relative;
-          z-index: 1;
-          text-align: center;
-          color: white;
+          z-index: 10;
           width: 100%;
         }
 
+        .hero-eyebrow {
+          display: block;
+          font-family: var(--font-serif);
+          text-transform: uppercase;
+          letter-spacing: 0.3em;
+          font-size: 0.9rem;
+          margin-bottom: var(--s-4);
+          color: var(--color-sage-light);
+        }
+
         .hero-title {
-          font-size: clamp(2.5rem, 6vw, 5rem);
-          font-weight: 800;
-          margin-bottom: var(--space-6);
-          line-height: 1.1;
-          text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+          font-size: var(--h1);
+          max-width: 900px;
+          margin-bottom: var(--s-8);
+        }
+
+        .text-accent {
+          color: var(--color-sage-light);
         }
 
         .hero-subtitle {
-          font-size: clamp(1.1rem, 2vw, 1.5rem);
-          max-width: 800px;
-          margin: 0 auto var(--space-10);
-          line-height: 1.6;
-          color: rgba(255, 255, 255, 0.9);
-          text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+          font-size: var(--body);
+          max-width: 600px;
+          margin-bottom: var(--s-12);
+          opacity: 0.9;
+          font-weight: 300;
         }
 
         .hero-buttons {
           display: flex;
-          gap: var(--space-4);
-          justify-content: center;
-          flex-wrap: wrap;
+          gap: var(--s-4);
         }
 
-        .scroll-indicator {
+        .scroll-hint {
           position: absolute;
-          bottom: var(--space-8);
+          bottom: var(--s-12);
           left: 50%;
           transform: translateX(-50%);
-          color: rgba(255, 255, 255, 0.7);
-          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: var(--s-2);
+          opacity: 0.6;
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          letter-spacing: 0.2em;
+        }
+
+        .hint-line {
+          width: 1px;
+          height: 50px;
+          background: white;
+          transform-origin: top;
         }
 
         @media (max-width: 768px) {
-          .hero {
-            height: 90vh;
+          .hero-content {
+            text-align: center;
           }
-
           .hero-buttons {
+            justify-content: center;
             flex-direction: column;
-            align-items: center;
           }
-
-          .btn {
-            width: 100%;
-            max-width: 300px;
+          .hero-title {
+            font-size: 3rem;
           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 };
 
 export default Hero;
+
+
