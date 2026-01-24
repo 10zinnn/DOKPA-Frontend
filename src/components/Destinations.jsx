@@ -38,7 +38,7 @@ const Destinations = () => {
           {featured.map((dest, index) => (
             <Link to="/destinations" key={index} className="dest-preview-card reveal" style={{ transitionDelay: `${index * 0.1}s` }}>
               <div className="dest-image">
-                <img src={dest.image} alt={dest.title} />
+                <img src={dest.image} alt={`${dest.title} - ${dest.subtitle}`} loading="lazy" />
                 <span className="dest-tag">{dest.tag}</span>
               </div>
               <div className="dest-info">

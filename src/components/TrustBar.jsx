@@ -30,7 +30,7 @@ const TrustBar = () => {
 
         .trust-label {
           text-align: center;
-          font-size: var(--s-1);
+          font-size: 0.75rem;
           text-transform: uppercase;
           letter-spacing: 0.2em;
           color: var(--text-muted);

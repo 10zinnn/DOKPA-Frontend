@@ -34,9 +34,14 @@ const Hero = () => {
           background-image: url('/hero-bg.jpg');
           background-size: cover;
           background-position: center;
-          background-attachment: fixed;
           color: white;
           overflow: hidden;
+        }
+
+        @media (min-width: 769px) {
+          .hero {
+            background-attachment: fixed;
+          }
         }
 
         .hero-overlay {

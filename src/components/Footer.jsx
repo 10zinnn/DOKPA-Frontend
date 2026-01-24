@@ -52,6 +52,11 @@ const Footer = () => {
           border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
+        [data-theme='dark'] .footer {
+          background: var(--bg-alt);
+          border-top: 1px solid var(--glass-border);
+        }
+
         .footer-grid {
           display: grid;
           grid-template-columns: 2fr 1fr 1fr;

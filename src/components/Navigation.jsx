@@ -4,6 +4,7 @@ import './Navigation.css'
 
 const Navigation = ({ theme, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -16,6 +17,8 @@ const Navigation = ({ theme, toggleTheme }) => {
   }, []);
 
   const scrollToSection = (id) => {
+    setMobileMenuOpen(false);
+    
     if (location.pathname !== '/') {
       navigate('/#' + id);
       return;
@@ -39,6 +42,23 @@ const Navigation = ({ theme, toggleTheme }) => {
     }
   }, [location]);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <nav className={`navigation ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-wrapper">
@@ -46,7 +66,7 @@ const Navigation = ({ theme, toggleTheme }) => {
           DOKPA<span>.</span>
         </Link>
 
-        <div className="nav-actions">
+        <div className={`nav-actions ${mobileMenuOpen ? 'mobile-open' : ''}`}>
           <ul className="nav-menu">
             <li><a onClick={() => scrollToSection('home')}>Home</a></li>
             <li><a onClick={() => scrollToSection('about')}>Story</a></li>
@@ -63,9 +83,20 @@ const Navigation = ({ theme, toggleTheme }) => {
             >
               {theme === 'dark' ? '☀️' : '🌙'}
             </button>
-            <a href="#contact" className="btn-book">Inquire</a>
+            <a href="#contact" className="btn-book" onClick={() => setMobileMenuOpen(false)}>Inquire</a>
           </div>
         </div>
+
+        <button 
+          className={`mobile-menu-toggle ${mobileMenuOpen ? 'open' : ''}`}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle mobile menu"
+          aria-expanded={mobileMenuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </nav>
   );

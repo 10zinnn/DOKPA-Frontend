@@ -68,6 +68,7 @@ const Testimonials = () => {
           transition: var(--transition);
           display: flex;
           flex-direction: column;
+          min-height: 400px;
         }
 
         .testimonial-card:hover {

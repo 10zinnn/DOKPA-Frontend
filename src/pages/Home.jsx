@@ -5,6 +5,7 @@ import About from '../components/About'
 import Destinations from '../components/Destinations'
 import Services from '../components/Services'
 import Testimonials from '../components/Testimonials'
+import ContactForm from '../components/ContactForm'
 
 function Home() {
     return (
@@ -15,6 +16,7 @@ function Home() {
             <Destinations />
             <Services />
             <Testimonials />
+            <ContactForm />
         </>
     );
 }

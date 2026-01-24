@@ -40,7 +40,7 @@ const About = () => {
 
           <div className="about-visual reveal" style={{ transitionDelay: '0.2s' }}>
             <div className="image-frame">
-              <img src="/about-image.jpg" alt="Ladakh Mountains" />
+              <img src="/about-image.jpg" alt="Ladakh Mountains - Dokpa Expeditions Guide" loading="lazy" />
               <div className="experience-badge gold">
                 <span className="years">15+</span>
                 <span className="label">Years of Mastery</span>

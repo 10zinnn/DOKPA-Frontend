@@ -41,6 +41,83 @@ function RevealObserver() {
     return null;
 }
 
+// Error Boundary Component
+class ErrorBoundary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { hasError: false, error: null };
+    }
+
+    static getDerivedStateFromError(error) {
+        return { hasError: true, error };
+    }
+
+    componentDidCatch(error, errorInfo) {
+        console.error('Error caught by boundary:', error, errorInfo);
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return (
+                <div style={{
+                    minHeight: '100vh',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                    padding: '2rem',
+                    textAlign: 'center',
+                    background: 'var(--bg-app)',
+                    color: 'var(--text-main)'
+                }}>
+                    <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>Oops!</h1>
+                    <p style={{ fontSize: '1.2rem', marginBottom: '2rem', maxWidth: '600px' }}>
+                        Something went wrong. We're working on getting this fixed as soon as possible.
+                    </p>
+                    <button
+                        onClick={() => window.location.href = '/'}
+                        style={{
+                            padding: '1rem 2rem',
+                            background: 'var(--accent)',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '99px',
+                            fontSize: '1rem',
+                            fontWeight: '700',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Return Home
+                    </button>
+                </div>
+            );
+        }
+
+        return this.props.children;
+    }
+}
+
+// 404 Not Found Component
+function NotFound() {
+    return (
+        <div style={{
+            minHeight: '80vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            padding: '2rem',
+            textAlign: 'center'
+        }}>
+            <h1 style={{ fontSize: 'var(--h1)', marginBottom: 'var(--s-4)' }}>404</h1>
+            <p style={{ fontSize: 'var(--body)', marginBottom: 'var(--s-8)', color: 'var(--text-muted)' }}>
+                The path you're looking for doesn't exist in these mountains.
+            </p>
+            <a href="/" className="btn btn-primary">Return to Base Camp</a>
+        </div>
+    );
+}
+
 function App() {
     const [theme, setTheme] = useState(() => {
         const savedTheme = localStorage.getItem('theme');
@@ -58,18 +135,26 @@ function App() {
     };
 
     return (
-        <Router>
-            <ScrollToTop />
-            <RevealObserver />
-            <div className="app">
-                <Navigation theme={theme} toggleTheme={toggleTheme} />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/destinations" element={<DestinationsPage />} />
-                </Routes>
-                <Footer />
-            </div>
-        </Router>
+        <ErrorBoundary>
+            <Router>
+                <ScrollToTop />
+                <RevealObserver />
+                <a href="#main-content" className="skip-to-content">
+                    Skip to main content
+                </a>
+                <div className="app">
+                    <Navigation theme={theme} toggleTheme={toggleTheme} />
+                    <main id="main-content">
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/destinations" element={<DestinationsPage />} />
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                    </main>
+                    <Footer />
+                </div>
+            </Router>
+        </ErrorBoundary>
     );
 }
 

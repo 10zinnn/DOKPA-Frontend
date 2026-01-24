@@ -44,7 +44,7 @@ const Services = () => {
           {services.map((service, index) => (
             <div key={index} className="service-card reveal" style={{ transitionDelay: `${index * 0.1}s` }}>
               <div className="service-image">
-                <img src={service.image} alt={service.title} />
+                <img src={service.image} alt={`${service.title} - Dokpa Expeditions`} loading="lazy" />
               </div>
               <div className="service-content">
                 <h3>{service.title}</h3>
@@ -54,7 +54,7 @@ const Services = () => {
                     <span key={i} className="meta-tag">{h}</span>
                   ))}
                 </div>
-                <button className="service-cta">Learn More</button>
+                <a href="#contact" className="service-cta">Learn More</a>
               </div>
             </div>
           ))}

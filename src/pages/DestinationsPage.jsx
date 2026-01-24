@@ -48,7 +48,7 @@ const DestinationsPage = () => {
           {destinations.map((dest, index) => (
             <div key={index} className="dest-item reveal" style={{ transitionDelay: `${index * 0.15}s` }}>
               <div className="dest-item-image">
-                <img src={dest.image} alt={dest.title} />
+                <img src={dest.image} alt={`${dest.title} - ${dest.description}`} loading="lazy" />
               </div>
               <div className="dest-item-content">
                 <div className="dest-header">
@@ -64,7 +64,7 @@ const DestinationsPage = () => {
                   <p>{dest.details}</p>
                 </div>
                 <div className="dest-action">
-                  <button className="btn btn-primary">Inquire About {dest.title}</button>
+                  <a href="#contact" className="btn btn-primary">Inquire About {dest.title}</a>
                 </div>
               </div>
             </div>
