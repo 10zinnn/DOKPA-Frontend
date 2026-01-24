@@ -1,157 +1,106 @@
 import React, { useState, useEffect } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import './Navigation.css'
 
 const Navigation = ({ theme, toggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (id) => {
+    setMobileMenuOpen(false);
+    
+    if (location.pathname !== '/') {
+      navigate('/#' + id);
+      return;
+    }
+
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location]);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   return (
-    <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container nav-container">
-        <div className="nav-logo">
-          <img
-            src={theme === 'dark' ? "/logo-white.svg" : "/logo-black.svg"}
-            alt="Dokpa Expeditions"
-            className="logo-image"
-          />
-        </div>
-        <div className="nav-right">
-          <ul className="nav-links">
+    <nav className={`navigation ${scrolled ? 'scrolled' : ''}`}>
+      <div className="container nav-wrapper">
+        <Link to="/" className="brand-logo">
+          DOKPA<span>.</span>
+        </Link>
+
+        <div className={`nav-actions ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+          <ul className="nav-menu">
             <li><a onClick={() => scrollToSection('home')}>Home</a></li>
-            <li><a onClick={() => scrollToSection('about')}>About</a></li>
-            <li><a onClick={() => scrollToSection('services')}>Services</a></li>
-            <li><a onClick={() => scrollToSection('testimonials')}>Testimonials</a></li>
+            <li><a onClick={() => scrollToSection('about')}>Story</a></li>
+            <li><a onClick={() => scrollToSection('activities')}>Activities</a></li>
+            <li><a onClick={() => scrollToSection('destinations')}>Destinations</a></li>
             <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
           </ul>
-          <button
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {theme === 'dark' ? '☀️' : '🌙'}
-          </button>
+
+          <div className="nav-controls">
+            <button
+              className="theme-btn"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? '☀️' : '🌙'}
+            </button>
+            <a href="#contact" className="btn-book" onClick={() => setMobileMenuOpen(false)}>Inquire</a>
+          </div>
         </div>
+
+        <button 
+          className={`mobile-menu-toggle ${mobileMenuOpen ? 'open' : ''}`}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle mobile menu"
+          aria-expanded={mobileMenuOpen}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-      <style jsx>{`
-        .nav {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: 1000;
-          padding: var(--space-4) 0;
-          transition: all var(--transition-base);
-          background: var(--nav-bg);
-          backdrop-filter: blur(10px);
-        }
-
-        .nav.scrolled {
-          box-shadow: var(--shadow-lg);
-        }
-
-        .nav-container {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .nav-logo {
-          display: flex;
-          align-items: center;
-        }
-
-        .logo-image {
-          height: 50px;
-          width: auto;
-          transition: transform var(--transition-base);
-        }
-
-        .nav-right {
-          display: flex;
-          align-items: center;
-          gap: var(--space-8);
-        }
-
-        .nav-links {
-          display: flex;
-          gap: var(--space-8);
-          list-style: none;
-        }
-
-        .nav-links a {
-          color: var(--text-primary);
-          text-decoration: none;
-          font-weight: 500;
-          font-size: var(--text-base);
-          cursor: pointer;
-          position: relative;
-          transition: color var(--transition-fast);
-        }
-
-        .nav-links a::after {
-          content: '';
-          position: absolute;
-          bottom: -4px;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background: var(--color-sage-green);
-          transition: width var(--transition-base);
-        }
-
-        .nav-links a:hover {
-          color: var(--color-sage-green);
-        }
-
-        .nav-links a:hover::after {
-          width: 100%;
-        }
-
-        .theme-toggle {
-          background: var(--bg-secondary);
-          border: 1px solid var(--glass-border);
-          padding: var(--space-2);
-          border-radius: 50%;
-          cursor: pointer;
-          font-size: var(--text-lg);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all var(--transition-base);
-          width: 40px;
-          height: 40px;
-        }
-
-        .theme-toggle:hover {
-          transform: scale(1.1);
-          background: var(--color-sage-green);
-        }
-
-        @media (max-width: 768px) {
-          .nav-links {
-            display: none;
-          }
-          
-          .logo-image {
-            height: 40px;
-          }
-        }
-      `}</style>
     </nav>
   );
 };
 
 export default Navigation;
+

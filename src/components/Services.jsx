@@ -4,25 +4,25 @@ const Services = () => {
   const services = [
     {
       title: 'Peak Climbing',
-      description: 'Conquer majestic Himalayan summits with our expert climbing teams and comprehensive support.',
+      description: 'Conquer majestic Himalayan summits with our expert climbing teams and technical support.',
       image: '/peak-climbing.jpg',
       highlights: ['Technical peaks', 'Full logistics', 'Expert guides']
     },
     {
-      title: 'Treks',
-      description: 'Explore hidden valleys and high passes on curated trekking routes across the Ladakhi landscape.',
+      title: 'Luxury Treks',
+      description: 'Explore hidden valleys and high passes with curated comfort in the rugged Ladakhi landscape.',
       image: '/trekking.jpg',
-      highlights: ['Remote trails', 'Local culture', 'Sustainable travel']
+      highlights: ['Remote trails', 'Organic local food', 'Sustainable travel']
     },
     {
-      title: 'Ice & Rock Climbing',
+      title: 'Technical Alpine',
       description: 'Challenge yourself on world-class rock faces and frozen waterfalls with professional guidance.',
       image: '/ice-climbing.jpg',
-      highlights: ['Skills training', 'Top gear', 'Safety focused']
+      highlights: ['Ice & Rock climbing', 'Expert training', 'Top-tier safety']
     },
     {
-      title: 'Cultural Tours',
-      description: 'Immerse yourself in the rich traditions, monasteries, and hospitality of the High Himalayas.',
+      title: 'Cultural Immersion',
+      description: 'Immerse yourself in the rich traditions, ancient monasteries, and hospitality of the High Himalayas.',
       image: '/cultural-tours.jpg',
       highlights: ['Authentic Gompas', 'Local homestays', 'Expert narration']
     }
@@ -31,186 +31,174 @@ const Services = () => {
   return (
     <section id="services" className="section services-section">
       <div className="container">
-        <h2 className="section-title">Our Adventure Experiences</h2>
-        <p className="section-intro">
-          Experience peak climbing, treks, ice and rock climbing and cultural tours in Ladakh with expert guides and adventures.
-        </p>
+        <div className="section-header reveal">
+          <span className="section-eyebrow">Expertly Guided</span>
+          <h2 className="section-title-alt">Unforgettable Adventures</h2>
+          <p className="section-intro">
+            From technical climbs to soul-stirring cultural journeys, we specialize in high-altitude
+            experiences that remain etched in your memory forever.
+          </p>
+        </div>
 
         <div className="services-grid">
           {services.map((service, index) => (
-            <div
-              key={index}
-              className="service-card"
-              style={{ backgroundImage: `url(${service.image})` }}
-            >
-              <div className="card-overlay"></div>
-              <div className="card-content">
+            <div key={index} className="service-card reveal" style={{ transitionDelay: `${index * 0.1}s` }}>
+              <div className="service-image">
+                <img src={service.image} alt={`${service.title} - Dokpa Expeditions`} loading="lazy" />
+              </div>
+              <div className="service-content">
                 <h3>{service.title}</h3>
-                <p className="service-description">{service.description}</p>
-                <ul className="service-highlights">
-                  {service.highlights.map((highlight, i) => (
-                    <li key={i}>
-                      <span className="check-icon">✓</span>
-                      {highlight}
-                    </li>
+                <p>{service.description}</p>
+                <div className="service-meta">
+                  {service.highlights.map((h, i) => (
+                    <span key={i} className="meta-tag">{h}</span>
                   ))}
-                </ul>
-                <button className="btn-link">
-                  Learn More →
-                </button>
+                </div>
+                <a href="#contact" className="service-cta">Learn More</a>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="cta-box glass">
-          <h3>Ready for Your Next Adventure?</h3>
-          <p>Packages and detailed itineraries will be available soon. Get in touch to discuss custom journeys.</p>
-          <a href="#contact" className="btn btn-primary">Contact Us</a>
+        <div className="cta-banner glass-panel reveal">
+          <div className="cta-content">
+            <h3>Plan Your Custom Expedition</h3>
+            <p>Every journey is unique. Let us craft an itinerary that matches your ambition.</p>
+          </div>
+          <a href="#contact" className="btn btn-primary">Get a Free Consultation</a>
         </div>
       </div>
-      <style jsx>{`
+      <style>{`
         .services-section {
-          background: var(--bg-primary);
+          background: var(--bg-alt);
+        }
+
+        .section-header {
+          text-align: center;
+          max-width: 800px;
+          margin: 0 auto var(--s-16);
         }
 
         .section-intro {
-          text-align: center;
-          max-width: 700px;
-          margin: 0 auto var(--space-12);
-          font-size: var(--text-lg);
-          color: var(--text-primary);
-          opacity: 0.9;
+          font-size: var(--body);
+          color: var(--text-muted);
         }
 
         .services-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: var(--space-8);
-          margin-bottom: var(--space-16);
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: var(--s-8);
+          margin-bottom: var(--s-24);
         }
 
         .service-card {
-          height: 450px;
-          position: relative;
-          border-radius: var(--radius-xl);
+          background: var(--bg-app);
+          border-radius: var(--radius-outer);
           overflow: hidden;
-          background-size: cover;
-          background-position: center;
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-end;
-          transition: transform var(--transition-base), box-shadow var(--transition-base);
+          box-shadow: var(--shadow-soft);
           border: 1px solid var(--glass-border);
+          transition: var(--transition);
         }
 
         .service-card:hover {
           transform: translateY(-10px);
-          box-shadow: var(--shadow-xl), var(--shadow-glow);
+          box-shadow: var(--shadow-strong);
         }
 
-        .card-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.2) 0%,
-            rgba(0, 0, 0, 0.6) 50%,
-            rgba(0, 0, 0, 0.9) 100%
-          );
-          transition: opacity var(--transition-base);
+        .service-image {
+          height: 250px;
+          overflow: hidden;
         }
 
-        .service-card:hover .card-overlay {
-          background: linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.1) 0%,
-            rgba(0, 0, 0, 0.5) 40%,
-            rgba(0, 0, 0, 0.95) 100%
-          );
+        .service-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 1s ease;
         }
 
-        .card-content {
-          position: relative;
-          z-index: 2;
-          padding: var(--space-8);
-          color: white;
+        .service-card:hover .service-image img {
+          transform: scale(1.1);
         }
 
-        .service-card h3 {
-          font-size: var(--text-2xl);
-          margin-bottom: var(--space-3);
-          color: white;
+        .service-content {
+          padding: var(--s-8);
         }
 
-        .service-description {
-          color: rgba(255, 255, 255, 0.9);
-          margin-bottom: var(--space-4);
-          font-size: var(--text-base);
-          line-height: 1.4;
+        .service-content h3 {
+          margin-bottom: var(--s-2);
+          font-size: 1.5rem;
         }
 
-        .service-highlights {
-          list-style: none;
-          margin-bottom: var(--space-6);
+        .service-content p {
+          font-size: 0.95rem;
+          color: var(--text-muted);
+          margin-bottom: var(--s-6);
         }
 
-        .service-highlights li {
+        .service-meta {
           display: flex;
-          align-items: center;
-          gap: var(--space-2);
-          margin-bottom: var(--space-1);
-          color: rgba(255, 255, 255, 0.85);
-          font-size: var(--text-sm);
+          flex-wrap: wrap;
+          gap: var(--s-2);
+          margin-bottom: var(--s-8);
         }
 
-        .check-icon {
-          color: var(--color-sage-green-light);
-          font-weight: bold;
+        .meta-tag {
+          font-size: 0.75rem;
+          background: var(--bg-alt);
+          padding: var(--s-1) var(--s-3);
+          border-radius: var(--radius-inner);
+          color: var(--accent);
+          font-weight: 600;
         }
 
-        .btn-link {
+        .service-cta {
           background: none;
           border: none;
-          color: var(--color-sage-green-light);
-          font-weight: 600;
+          color: var(--accent);
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          font-size: 0.8rem;
           cursor: pointer;
-          font-size: var(--text-base);
-          text-align: left;
-          transition: all var(--transition-fast);
           padding: 0;
+          display: flex;
+          align-items: center;
+          gap: var(--s-2);
         }
 
-        .btn-link:hover {
-          color: white;
+        .service-cta::after {
+          content: '→';
+          transition: transform 0.3s ease;
+        }
+
+        .service-cta:hover::after {
           transform: translateX(5px);
         }
 
-        .cta-box {
-          text-align: center;
-          padding: var(--space-12) var(--space-8);
-          border-radius: var(--radius-2xl);
-          background: var(--bg-secondary);
+        .cta-banner {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: var(--s-12);
+          border-radius: var(--radius-outer);
+          gap: var(--s-8);
         }
 
-        .cta-box h3 {
-          font-size: var(--text-3xl);
-          margin-bottom: var(--space-4);
-          color: var(--text-primary);
+        .cta-content h3 {
+          font-size: var(--h3);
+          margin-bottom: var(--s-2);
         }
 
-        .cta-box p {
-          max-width: 600px;
-          margin: 0 auto var(--space-6);
-          color: var(--text-secondary);
+        .cta-content p {
+          color: var(--text-muted);
+          margin: 0;
         }
 
-        @media (max-width: 768px) {
-          .services-grid {
-            grid-template-columns: 1fr;
-          }
-          .service-card {
-            height: 400px;
+        @media (max-width: 850px) {
+          .cta-banner {
+            flex-direction: column;
+            text-align: center;
           }
         }
       `}</style>
@@ -219,3 +207,5 @@ const Services = () => {
 };
 
 export default Services;
+
+
