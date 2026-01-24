@@ -70,8 +70,8 @@ const Navigation = ({ theme, toggleTheme }) => {
           <ul className="nav-menu">
             <li><a onClick={() => scrollToSection('home')}>Home</a></li>
             <li><a onClick={() => scrollToSection('about')}>Story</a></li>
+            <li><a onClick={() => scrollToSection('activities')}>Activities</a></li>
             <li><Link to="/destinations">Destinations</Link></li>
-            <li><a onClick={() => scrollToSection('services')}>Experiences</a></li>
             <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
           </ul>
 
