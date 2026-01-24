@@ -14,6 +14,33 @@ function ScrollToTop() {
     return null;
 }
 
+// Component to handle reveal animations
+function RevealObserver() {
+    const location = useLocation();
+
+    useEffect(() => {
+        // Small delay to ensure DOM is ready after route change
+        const timer = setTimeout(() => {
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => observer.observe(el));
+            
+            return () => observer.disconnect();
+        }, 50);
+
+        return () => clearTimeout(timer);
+    }, [location.pathname]);
+
+    return null;
+}
+
 function App() {
     const [theme, setTheme] = useState(() => {
         const savedTheme = localStorage.getItem('theme');
@@ -26,20 +53,6 @@ function App() {
         localStorage.setItem('theme', theme);
     }, [theme]);
 
-    useEffect(() => {
-        const revealElements = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        revealElements.forEach(el => observer.observe(el));
-        return () => observer.disconnect();
-    }, []);
-
     const toggleTheme = () => {
         setTheme(prev => prev === 'light' ? 'dark' : 'light');
     };
@@ -47,6 +60,7 @@ function App() {
     return (
         <Router>
             <ScrollToTop />
+            <RevealObserver />
             <div className="app">
                 <Navigation theme={theme} toggleTheme={toggleTheme} />
                 <Routes>
