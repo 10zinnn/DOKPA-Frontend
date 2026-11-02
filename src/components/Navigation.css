@@ -49,13 +49,14 @@
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: var(--s-12);
+    gap: clamp(1rem, 2vw, var(--s-12));
 }
 
 .nav-menu {
     display: flex;
-    gap: var(--s-8);
+    gap: clamp(0.6rem, 1.3vw, var(--s-8));
     list-style: none;
+    align-items: center;
 }
 
 .nav-menu a {
@@ -68,6 +69,7 @@
     transition: var(--transition);
     font-family: var(--font-serif);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
 }
 
 .navigation.scrolled .nav-menu a {
@@ -76,13 +78,16 @@
     text-shadow: none;
 }
 
-.nav-menu a:hover {
+.nav-menu a:hover,
+.nav-menu a.active {
     opacity: 1;
     color: var(--color-gold);
 }
 
-.navigation.scrolled .nav-menu a:hover {
+.navigation.scrolled .nav-menu a:hover,
+.navigation.scrolled .nav-menu a.active {
     color: var(--accent);
+    opacity: 1;
 }
 
 .nav-controls {
@@ -136,6 +141,7 @@
     transition: var(--transition);
     font-family: var(--font-serif);
     box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    white-space: nowrap;
 }
 
 .navigation.scrolled .btn-book {
@@ -225,7 +231,7 @@
 
     .nav-menu {
         flex-direction: column;
-        gap: var(--s-6);
+        gap: var(--s-4);
         width: 100%;
     }
 
@@ -235,16 +241,17 @@
 
     .nav-menu a {
         display: block;
-        padding: var(--s-4);
+        padding: var(--s-3) var(--s-4);
         color: var(--text-main);
         opacity: 1;
         text-shadow: none;
-        font-size: 1.2rem;
+        font-size: 1.15rem;
         border-radius: var(--radius-inner);
         transition: var(--transition);
     }
 
-    .nav-menu a:hover {
+    .nav-menu a:hover,
+    .nav-menu a.active {
         background: var(--bg-alt);
         color: var(--accent);
     }

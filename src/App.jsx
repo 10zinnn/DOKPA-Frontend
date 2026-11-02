@@ -6,6 +6,11 @@ import DestinationsPage from './pages/DestinationsPage'
 import DestinationDetailPage from './pages/DestinationDetailPage'
 import ActivitiesPage from './pages/ActivitiesPage'
 import ActivityDetailPage from './pages/ActivityDetailPage'
+import TripsPage from './pages/TripsPage'
+import TripDetailPage from './pages/TripDetailPage'
+import GeneralInfoPage from './pages/GeneralInfoPage'
+import BlogPage from './pages/BlogPage'
+import BlogPostPage from './pages/BlogPostPage'
 import Footer from './components/Footer'
 
 // Scroll To Top component to handle route changes
@@ -150,10 +155,15 @@ function App() {
                     <main id="main-content">
                         <Routes>
                             <Route path="/" element={<Home />} />
+                            <Route path="/trips" element={<TripsPage />} />
+                            <Route path="/trips/:tripSlug" element={<TripDetailPage />} />
                             <Route path="/destinations" element={<DestinationsPage />} />
                             <Route path="/destinations/:destinationId" element={<DestinationDetailPage />} />
                             <Route path="/activities" element={<ActivitiesPage />} />
                             <Route path="/activities/:activityId" element={<ActivityDetailPage />} />
+                            <Route path="/general-info" element={<GeneralInfoPage />} />
+                            <Route path="/blog" element={<BlogPage />} />
+                            <Route path="/blog/:postId" element={<BlogPostPage />} />
                             <Route path="*" element={<NotFound />} />
                         </Routes>
                     </main>
@@ -165,5 +175,3 @@ function App() {
 }
 
 export default App;
-
-

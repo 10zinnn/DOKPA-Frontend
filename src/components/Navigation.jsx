@@ -70,8 +70,35 @@ const Navigation = ({ theme, toggleTheme }) => {
           <ul className="nav-menu">
             <li><a onClick={() => scrollToSection('home')}>Home</a></li>
             <li><a onClick={() => scrollToSection('about')}>Story</a></li>
+            <li>
+              <Link
+                to="/trips"
+                className={location.pathname.startsWith('/trips') ? 'active' : ''}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Expeditions
+              </Link>
+            </li>
             <li><a onClick={() => scrollToSection('activities')}>Activities</a></li>
             <li><a onClick={() => scrollToSection('destinations')}>Destinations</a></li>
+            <li>
+              <Link
+                to="/general-info"
+                className={location.pathname === '/general-info' ? 'active' : ''}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                General Info
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/blog"
+                className={location.pathname.startsWith('/blog') ? 'active' : ''}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Blog
+              </Link>
+            </li>
             <li><a onClick={() => scrollToSection('contact')}>Contact</a></li>
           </ul>
 
@@ -103,4 +130,3 @@ const Navigation = ({ theme, toggleTheme }) => {
 };
 
 export default Navigation;
-
